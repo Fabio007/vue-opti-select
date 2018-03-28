@@ -1,20 +1,20 @@
 # vue-opti-table
 
-> VueJS 2 Optimized Datatable
+> VueJS 2 Optimized Select
 
 ## Installing
 
 Install with npm:
 ```
-npm install --save vue-opti-table
+npm install --save vue-opti-select
 ```
 
 Import into project:
 ```
 import Vue from 'vue';
-import VueOptiTable from 'vue-opti-table';
+import VueOptiSelect from 'vue-opti-select';
 
-Vue.use(VueOptiTable);
+Vue.use(VueOptiSelect);
 ```
 
 ### Build Setup

@@ -1,7 +1,7 @@
 var webpack = require("webpack");
 var path = require('path')
 var version = require("./../package.json").version;
-var banner = "/**\n" + " * vue-opti-select v" + version + "\n" + " * https://github.com/rqyrku/vue-opti-table\n" + " * Released under the MIT License.\n" + " */\n";
+var banner = "/**\n" + " * vue-opti-select v" + version + "\n" + " * https://github.com/rqyrku/vue-opti-select.git\n" + " * Released under the MIT License.\n" + " */\n";
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var StatsPlugin = require("stats-webpack-plugin");
 

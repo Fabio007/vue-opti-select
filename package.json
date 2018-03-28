@@ -1,7 +1,7 @@
 {
   "name": "vue-opti-select",
   "version": "0.0.1",
-  "description": "VueJS 2 Optimized Single Select",
+  "description": "VueJS 2 Optimized Select",
   "author": "Reidi Qyrku <reidiqyrku@hotmail.com>",
   "main": "dist/vue-opti-select.js",
   "scripts": {
@@ -21,7 +21,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rqyrku/vue-opti-table"
+    "url": "git+https://github.com/rqyrku/vue-opti-select.git"
   },
   "dependencies": {
     "vue": "^2.5.2"
