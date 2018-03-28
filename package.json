@@ -23,9 +23,6 @@
     "type": "git",
     "url": "git+https://github.com/rqyrku/vue-opti-select.git"
   },
-  "dependencies": {
-    "vue": "^2.5.2"
-  },
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -85,6 +82,7 @@
     "stats-webpack-plugin": "^0.6.2",
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.5.8",
+    "vue": "^2.5.2",
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.1",
     "vue-template-compiler": "^2.5.2",
