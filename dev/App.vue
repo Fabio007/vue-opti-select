@@ -4,7 +4,6 @@
       uniqueKey="id"
       v-model="selectedRow" 
       :list="rows" 
-      @input="$_onInput" 
       @click="$_onClick" 
       @change="$_onChange">
     </vue-opti-select>
@@ -33,9 +32,6 @@
       }
     },
     methods: {
-      $_onInput(value, item, index) {
-        console.log('--onInput', value, item, index)
-      },
       $_onClick(item, index) {
         console.log('--onClick', item, index)
       },
