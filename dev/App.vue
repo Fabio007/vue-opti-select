@@ -1,6 +1,7 @@
 <template>
   <div class="container mt-3">
-    <vue-opti-select class="col-md-4 offset-md-4" 
+    <vue-opti-select class="col-md-4 offset-md-4"
+      uniqueKey="id"
       v-model="selectedRow" 
       :list="rows" 
       @input="$_onInput" 
@@ -23,10 +24,10 @@
     data () {
       return {
         rows: [
-          { content: '10 Rows', value: {a: 10, c: '3'} },
-          { content: '25 Rows', value: 25 },
-          { content: '50 Rows', value: 50 },
-          { content: '100 Rows', value: 100 },
+          { content: '10 Rows', id: {a: 10, c: '3'} },
+          { content: '25 Rows', id: 25 },
+          { content: '50 Rows', id: 50 },
+          { content: '100 Rows', id: 100 },
         ],
         selectedRow: 25,
       }

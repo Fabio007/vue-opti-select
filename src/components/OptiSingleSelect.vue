@@ -5,7 +5,7 @@
 
       <b-dropdown-item class="item"
         v-for="(item, i) in list" :key="i"
-        :class="{ 'active-item': $c_selectedItem ? item.value === $c_selectedItem.value : false}"
+        :class="{ 'active-item': $c_selectedItem ? item[uniqueKey] === $c_selectedItem[uniqueKey] : false}"
         :to="item.to || null"
         @click="$_itemClickAction(item, i)">
         <slot :item="item"><span v-html="item.content"></span></slot>
@@ -23,6 +23,7 @@ export default {
     list: { type: Array, required: true },
     placeholder: { type: String, default: '' },
     staticPlaceholder: { type: String, default: '' },
+    uniqueKey: { type: String, required: true },
   },
   data() {
     return {
@@ -38,8 +39,8 @@ export default {
       for (const index in this.list) {
         if (Object.prototype.hasOwnProperty.call(this.list, index)) {
           const option = this.list[index];
-          if (typeof option.value === typeof this.value) {
-            const value = typeof option.value === 'object' ? JSON.stringify(option.value) : option.value;
+          if (typeof option[this.uniqueKey] === typeof this.value) {
+            const value = typeof option[this.uniqueKey] === 'object' ? JSON.stringify(option[this.uniqueKey]) : option[this.uniqueKey];
             if (model === value) {
               selectedIndex = index;
               break;
@@ -54,12 +55,12 @@ export default {
     },
     $c_placeholder() {
       if (this.staticPlaceholder) return this.staticPlaceholder;
-      return (this.$c_selectedItem && this.$c_selectedItem.value && this.$c_selectedItem.content) || this.placeholder;
+      return (this.$c_selectedItem && this.$c_selectedItem[this.uniqueKey] && this.$c_selectedItem.content) || this.placeholder;
     },
   },
   methods: {
     $_itemClickAction(item, index) {
-      this.$emit('input', item.value, item, index);
+      this.$emit('input', item[this.uniqueKey], item, index);
       this.$emit('click', item, index);
     },
     $_shown() {
