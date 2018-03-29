@@ -1,14 +1,15 @@
 <template>
-  <div>
-    <b-dropdown>
+  <div class="single-select-wrapper">
+    <b-dropdown @hidden="$_hidden" @shown="$_shown">
       <div slot="button-content" class="placeholder" v-html="$c_placeholder"></div>
 
       <b-dropdown-item class="item"
-        v-for="(item, index) in list" :key="index"
-        :class="{ 'active-item': item.selected }"
-        @click="$_itemClickAction(item, index)"
-        v-html="item.content"
-      ></b-dropdown-item>
+        v-for="(item, i) in list" :key="i"
+        :class="{ 'active-item': $c_selectedItem ? item.value === $c_selectedItem.value : false}"
+        :to="item.to || null"
+        @click="$_itemClickAction(item, i)">
+        <slot :item="item"><span v-html="item.content"></span></slot>
+      </b-dropdown-item>
 
     </b-dropdown>
   </div>
@@ -18,55 +19,73 @@
 export default {
   name: 'vue-opti-select',
   props: {
-    value: {},
+    value: null,
     list: { type: Array, required: true },
     placeholder: { type: String, default: '' },
     staticPlaceholder: { type: String, default: '' },
-    onClick: { type: Function, default: null },
   },
   data() {
     return {
-      localValue: this.value,
+      lastIndex: null,
     };
   },
-  // watch: {
-  //   value (newVal, oldVal) {
-  //     this.localValue = newVal
-  //   },
-  //   localValue(newVal) {
-  //     this.$emit('input', this.localValue);
-  //   }
-  // },
   computed: {
+    $c_selectedIndex() {
+      let selectedIndex = null;
+      let model = this.value;
+      if (typeof model === 'object') model = JSON.stringify(model);
+      // Loop through options searching for match value
+      for (const index in this.list) {
+        if (Object.prototype.hasOwnProperty.call(this.list, index)) {
+          const option = this.list[index];
+          if (typeof option.value === typeof this.value) {
+            const value = typeof option.value === 'object' ? JSON.stringify(option.value) : option.value;
+            if (model === value) {
+              selectedIndex = index;
+              break;
+            }
+          }
+        }
+      }
+      return selectedIndex;
+    },
     $c_selectedItem() {
-      return this.list.find(item => item.selected);
+      return this.list[this.$c_selectedIndex];
     },
     $c_placeholder() {
-      if (this.staticPlaceholder) {
-        return this.staticPlaceholder;
-      }
-      return (this.$c_selectedItem && this.$c_selectedItem.content) || this.placeholder;
+      if (this.staticPlaceholder) return this.staticPlaceholder;
+      return (this.$c_selectedItem && this.$c_selectedItem.value && this.$c_selectedItem.content) || this.placeholder;
     },
   },
   methods: {
-    $_itemClickAction(item) {
-      this.$emit('input', item);
-      if (this.onClick) {
-        this.onClick(item);
-      }
+    $_itemClickAction(item, index) {
+      this.$emit('input', item.value, item, index);
+      this.$emit('click', item, index);
     },
-  },
-  created() {
-    // if (this.list.length) {
-    //   this.$emit('input', this.$c_selectedItem || null);
-    // }
+    $_shown() {
+      this.lastIndex = this.$c_selectedIndex;
+    },
+    $_hidden() {
+      if (this.lastIndex !== this.$c_selectedIndex) this.$emit('change', this.$c_selectedItem, this.$c_selectedIndex);
+    },
   },
 };
 </script>
 
-<style>
+<style lang="scss">
+  .single-select-wrapper {
+    .dropdown-menu {
+      z-index: 99999999;
+    }
+  }
   .b-dropdown > * {
     width: 100% !important;
+  }
+  .b-dropdown {
+    .dropdown-item a {
+      color: unset;
+      text-decoration: unset;
+    }
   }
 </style>
 
