@@ -2,6 +2,7 @@
   <div class="container mt-3">
     <vue-opti-select class="col-md-4 offset-md-4"
       uniqueKey="id"
+      contentKey="content"
       v-model="selectedRow" 
       :list="rows" 
       @click="$_onClick" 
@@ -28,7 +29,7 @@
           { content: '50 Rows', id: 50 },
           { content: '100 Rows', id: 100 },
         ],
-        selectedRow: 25,
+        selectedRow: null,
       }
     },
     methods: {

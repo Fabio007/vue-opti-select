@@ -8,7 +8,7 @@
         :class="{ 'active-item': $c_selectedItem ? item[uniqueKey] === $c_selectedItem[uniqueKey] : false}"
         :to="item.to || null"
         @click="$_itemClickAction(item, i)">
-        <slot :item="item"><span v-html="item.content"></span></slot>
+        <slot :item="item"><span v-html="item[contentKey]"></span></slot>
       </b-dropdown-item>
 
     </b-dropdown>
@@ -25,9 +25,10 @@ export default {
   props: {
     value: null,
     list: { type: Array, required: true },
-    placeholder: { type: String, default: '' },
+    placeholder: { type: String, default: 'Select Option' },
     staticPlaceholder: { type: String, default: '' },
     uniqueKey: { type: String, required: true },
+    contentKey: { type: String, required: true },
   },
   data() {
     return {
@@ -59,7 +60,7 @@ export default {
     },
     $c_placeholder() {
       if (this.staticPlaceholder) return this.staticPlaceholder;
-      return (this.$c_selectedItem && this.$c_selectedItem[this.uniqueKey] && this.$c_selectedItem.content) || this.placeholder;
+      return (this.$c_selectedItem && this.$c_selectedItem[this.uniqueKey] && this.$c_selectedItem[this.contentKey]) || this.placeholder;
     },
   },
   methods: {
