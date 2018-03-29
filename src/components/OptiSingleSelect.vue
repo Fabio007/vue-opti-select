@@ -18,6 +18,10 @@
 <script>
 export default {
   name: 'vue-opti-select',
+  model: {
+    prop: 'value',
+    event: 'click',
+  },
   props: {
     value: null,
     list: { type: Array, required: true },
@@ -60,8 +64,7 @@ export default {
   },
   methods: {
     $_itemClickAction(item, index) {
-      this.$emit('input', item[this.uniqueKey], item, index);
-      this.$emit('click', item, index);
+      this.$emit('click', item[this.uniqueKey], item, index);
     },
     $_shown() {
       this.lastIndex = this.$c_selectedIndex;
