@@ -27,8 +27,8 @@ export default {
     list: { type: Array, required: true },
     placeholder: { type: String, default: 'Select Option' },
     staticPlaceholder: { type: String, default: '' },
-    uniqueKey: { type: String, required: true },
-    contentKey: { type: String, required: true },
+    uniqueKey: { type: String, default: 'value' },
+    contentKey: { type: String, default: 'content' },
   },
   data() {
     return {
