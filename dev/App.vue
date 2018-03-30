@@ -6,7 +6,10 @@
       v-model="selectedRow" 
       :list="rows" 
       @click="$_onClick" 
-      @change="$_onChange">
+      @hidden:change="$_onChangeHiddenDropdown"
+      @change="$_onChange"
+      @shown="$_onShown"
+      @hidden="$_onHidden">
     </vue-opti-select>
     <br/>
     <h4 class="col-md-7 offset-md-3">Selected Item: {{ selectedRow }}</h4>
@@ -36,9 +39,18 @@
       $_onClick(item, index) {
         console.log('--onClick', item, index)
       },
+      $_onChangeHiddenDropdown(item, index) {
+        console.log('--onChangeHiddenDropdown', item, index)
+      },
       $_onChange(item, index) {
         console.log('--onChange', item, index)
       },
+      $_onShown() {
+        console.log('--onShown')
+      },
+      $_onHidden() {
+        console.log('--onHidden')
+      }
     },
   };
 </script>

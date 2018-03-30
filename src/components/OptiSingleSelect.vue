@@ -68,10 +68,17 @@ export default {
       this.$emit('click', item[this.uniqueKey], item, index);
     },
     $_shown() {
+      this.$emit('shown');
       this.lastIndex = this.$c_selectedIndex;
     },
     $_hidden() {
-      if (this.lastIndex !== this.$c_selectedIndex) this.$emit('change', this.$c_selectedItem, this.$c_selectedIndex);
+      this.$emit('hidden');
+      if (this.lastIndex !== this.$c_selectedIndex) this.$emit('hidden:change', this.$c_selectedItem, this.$c_selectedIndex);
+    },
+  },
+  watch: {
+    $c_selectedItem(newValue) {
+      this.$emit('change', newValue, this.$c_selectedIndex);
     },
   },
 };
