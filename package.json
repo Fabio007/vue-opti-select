@@ -1,6 +1,6 @@
 {
   "name": "vue-opti-select",
-  "version": "1.2.1",
+  "version": "1.1.4",
   "description": "VueJS 2 Optimized Select",
   "author": "Reidi Qyrku <reidiqyrku@hotmail.com>",
   "main": "dist/vue-opti-select.js",
