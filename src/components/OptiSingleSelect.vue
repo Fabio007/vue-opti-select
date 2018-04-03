@@ -1,6 +1,6 @@
 <template>
   <div class="single-select-wrapper">
-    <b-dropdown @hidden="$_hidden" @shown="$_shown">
+    <b-dropdown @hidden="$_hidden" @shown="$_shown" :class="[$c_state === true ? 'is-valid' : '', $c_state === false ? 'is-invalid' : '']">
       <div slot="button-content" class="placeholder" v-html="$c_placeholder"></div>
 
       <b-dropdown-item class="item"
@@ -29,6 +29,7 @@ export default {
     staticPlaceholder: { type: String, default: '' },
     uniqueKey: { type: String, default: 'value' },
     contentKey: { type: String, default: 'content' },
+    state: { default: null },
   },
   data() {
     return {
@@ -36,6 +37,10 @@ export default {
     };
   },
   computed: {
+    $c_state() {
+      if (typeof this.state === 'boolean') return this.state;
+      return null;
+    },
     $c_selectedIndex() {
       let selectedIndex = null;
       let model = this.value;
@@ -77,10 +82,6 @@ export default {
       if (this.lastIndex !== this.$c_selectedIndex) this.$emit('hidden:change', this.$c_selectedItem, this.$c_selectedIndex);
     },
   },
-  // watch: {
-  //   $c_selectedItem(newValue) {
-  //   },
-  // },
 };
 </script>
 
@@ -97,6 +98,13 @@ export default {
     .dropdown-item a {
       color: unset;
       text-decoration: unset;
+    }
+    border: 1px solid transparent;
+    &.is-valid {
+      border-color: #61a633;
+    }
+    &.is-invalid {
+      border-color:#ff5454;
     }
   }
 </style>

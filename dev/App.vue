@@ -9,7 +9,8 @@
       @hidden:change="$_onChangeHiddenDropdown"
       @change="$_onChange"
       @shown="$_onShown"
-      @hidden="$_onHidden">
+      @hidden="$_onHidden"
+      :state="null">
     </vue-opti-select>
     <br/>
     <h4 class="col-md-7 offset-md-3">Selected Item: {{ selectedRow }}</h4>
