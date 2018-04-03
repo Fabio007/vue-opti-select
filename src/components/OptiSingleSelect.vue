@@ -27,8 +27,8 @@ export default {
     list: { type: Array, required: true },
     placeholder: { type: String, default: 'Select Option' },
     staticPlaceholder: { type: String, default: '' },
-    uniqueKey: { type: String, required: true },
-    contentKey: { type: String, required: true },
+    uniqueKey: { type: String, default: 'value' },
+    contentKey: { type: String, default: 'content' },
   },
   data() {
     return {
@@ -56,6 +56,7 @@ export default {
       return selectedIndex;
     },
     $c_selectedItem() {
+      this.$emit('change', this.list[this.$c_selectedIndex], this.$c_selectedIndex);
       return this.list[this.$c_selectedIndex];
     },
     $c_placeholder() {
@@ -76,11 +77,10 @@ export default {
       if (this.lastIndex !== this.$c_selectedIndex) this.$emit('hidden:change', this.$c_selectedItem, this.$c_selectedIndex);
     },
   },
-  watch: {
-    $c_selectedItem(newValue) {
-      this.$emit('change', newValue, this.$c_selectedIndex);
-    },
-  },
+  // watch: {
+  //   $c_selectedItem(newValue) {
+  //   },
+  // },
 };
 </script>
 
