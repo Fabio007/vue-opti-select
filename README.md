@@ -1,4 +1,4 @@
-# vue-opti-table
+# vue-opti-select
 
 > VueJS 2 Optimized Select
 

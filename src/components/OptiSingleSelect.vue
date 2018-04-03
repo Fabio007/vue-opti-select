@@ -39,6 +39,8 @@ export default {
   computed: {
     $c_state() {
       if (typeof this.state === 'boolean') return this.state;
+      if (this.state === 'valid') return true;
+      if (this.state === 'invalid') return false;
       return null;
     },
     $c_selectedIndex() {
