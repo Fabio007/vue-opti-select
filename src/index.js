@@ -13,7 +13,11 @@ if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(OptiSingeSelectPlugin);
 }
 
-export default OptiSingeSelectPlugin;
+export default {
+  OptiSingeSelect,
+  OptiSingeSelectPlugin,
+};
+// for cdn
 export {
   OptiSingeSelect as VueOptiSelect,
 };
