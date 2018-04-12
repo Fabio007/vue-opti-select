@@ -1,16 +1,19 @@
 <template>
   <div class="single-select-wrapper">
     <b-dropdown @hidden="$_hidden" @shown="$_shown" :class="[$c_state === true ? 'is-valid' : '', $c_state === false ? 'is-invalid' : '']">
-      <div slot="button-content" class="placeholder" v-html="$c_placeholder"></div>
-
+      <div slot="button-content" class="placeholder">
+        <slot v-if="$c_selectedItem" name="placeholder" :selectedItem="$c_selectedItem">{{ $c_placeholder }}</slot>
+        <div v-else>{{ $c_placeholder }}</div>
+      </div>
       <b-dropdown-item class="item"
         v-for="(item, i) in list" :key="i"
         :class="{ 'active-item': $c_selectedItem ? item[uniqueKey] === $c_selectedItem[uniqueKey] : false}"
         :to="item.to || null"
         @click="$_itemClickAction(item, i)">
-        <slot :item="item"><span v-html="item[contentKey]"></span></slot>
+        <slot :item="item">
+          <span v-html="item[contentKey]"></span>
+        </slot>
       </b-dropdown-item>
-
     </b-dropdown>
   </div>
 </template>

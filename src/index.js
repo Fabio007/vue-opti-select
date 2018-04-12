@@ -14,7 +14,6 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  OptiSingeSelect,
   OptiSingeSelectPlugin,
 };
 // for cdn

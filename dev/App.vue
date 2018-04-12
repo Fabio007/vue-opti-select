@@ -4,13 +4,21 @@
       uniqueKey="id"
       contentKey="content"
       v-model="selectedRow" 
-      :list="rows" 
+      :list="rows"
       @click="$_onClick" 
       @hidden:change="$_onChangeHiddenDropdown"
       @change="$_onChange"
       @shown="$_onShown"
       @hidden="$_onHidden"
       :state="null">
+      <template slot-scope="props" slot="placeholder">
+        <span>{{ props.selectedItem.content }}</span>
+      </template>
+      <template slot-scope="slotProps">
+        <!-- Define a custom template for todo items, using -->
+        <!-- `slotProps` to customize each todo.            -->
+       <span v-html="slotProps.item.content"></span>
+      </template>
     </vue-opti-select>
     <br/>
     <h4 class="col-md-7 offset-md-3">Selected Item: {{ selectedRow }}</h4>
@@ -20,11 +28,13 @@
 <script>
   import Vue from 'vue';
   import BootstrapVue from 'bootstrap-vue';
-  import VueOptiSelect from '../src/index';
+  import { VueOptiSelect } from '../src/index';
   Vue.use(BootstrapVue);
-  Vue.use(VueOptiSelect);
   export default {
     name: 'test',
+    components: {
+      VueOptiSelect
+    },
     data () {
       return {
         rows: [
