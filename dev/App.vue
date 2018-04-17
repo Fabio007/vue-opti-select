@@ -12,7 +12,7 @@
       @hidden="$_onHidden"
       :state="null">
       <template slot-scope="props" slot="placeholder">
-        <span>{{ props.selectedItem.content }}</span>
+        <span>{{ props.selectedItem.content }} test</span>
       </template>
       <template slot-scope="slotProps">
         <!-- Define a custom template for todo items, using -->
