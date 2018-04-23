@@ -3,7 +3,7 @@
     <b-dropdown @hidden="$_hidden" @shown="$_shown" :class="[$c_state === true ? 'is-valid' : '', $c_state === false ? 'is-invalid' : '']">
       <div slot="button-content" class="placeholder">
         <slot v-if="$c_selectedItem" name="placeholder" :selectedItem="$c_selectedItem">{{ $c_placeholder }}</slot>
-        <div v-else>{{ $c_placeholder }}</div>
+        <div v-else v-html="$c_placeholder"></div>
       </div>
       <b-dropdown-item class="item"
         v-for="(item, i) in list" :key="i"
