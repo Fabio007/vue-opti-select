@@ -10,6 +10,7 @@
       @change="$_onChange"
       @shown="$_onShown"
       @hidden="$_onHidden"
+      search
       :state="null">
       <template slot-scope="props" slot="placeholder">
         <span>{{ props.selectedItem.content }} test</span>
@@ -18,6 +19,9 @@
         <!-- Define a custom template for todo items, using -->
         <!-- `slotProps` to customize each todo.            -->
        <span v-html="slotProps.item.content"></span>
+      </template>
+      <template slot="custom">
+        <hr class="mb-1 mt-1" />
       </template>
     </vue-opti-select>
     <br/>
@@ -41,6 +45,7 @@
           { content: '10 Rows', id: {a: 10, c: '3'} },
           { content: '25 Rows', id: 25 },
           { content: '50 Rows', id: 50 },
+          { content: 'Custom', slot: 'custom' },
           { content: '100 Rows', id: 100 },
         ],
         selectedRow: null,
