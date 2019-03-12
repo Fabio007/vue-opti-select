@@ -54,9 +54,9 @@ export default {
   created() {
     if (this.search) {
       this.$watch('searchModel', (value) => {
-        const formatedValue = value.toLocaleLowerCase().trim();
+        const formatedValue = value.toLowerCase().trim();
         this.localList.forEach((item) => {
-          if (item[this.searchField].toLocaleLowerCase().indexOf(formatedValue) === -1) {
+          if (item[this.searchField].toLowerCase().indexOf(formatedValue) === -1) {
             item.show = false;
           } else {
             item.show = true;
