@@ -25,6 +25,8 @@
 </template>
 
 <script>
+const _ = require('lodash');
+
 export default {
   name: 'vue-opti-select',
   model: {
@@ -118,7 +120,8 @@ export default {
     list: {
       immediate: true,
       handler(list) {
-        const cloneList = JSON.parse(JSON.stringify(list));
+        // const cloneList = JSON.parse(JSON.stringify(list));
+        const cloneList = _.cloneDeep(list);
         this.localList = cloneList.map((item) => {
           item.show = true;
           return item;
