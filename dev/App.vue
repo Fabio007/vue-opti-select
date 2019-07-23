@@ -47,6 +47,8 @@
           { content: '50 Rows', id: 50, fn: () => 'test' },
           { content: 'Custom', slot: 'custom' },
           { content: '100 Rows', id: 100 },
+          { content: 'False', id: false },
+          { content: 'True', id: true },
         ],
         selectedRow: null,
       }

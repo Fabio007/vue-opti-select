@@ -99,7 +99,7 @@ export default {
     },
     $c_placeholder() {
       if (this.staticPlaceholder) return this.staticPlaceholder;
-      return (this.$c_selectedItem && this.$c_selectedItem[this.uniqueKey] && this.$c_selectedItem[this.contentKey]) || this.placeholder;
+      return (this.$c_selectedItem && typeof this.$c_selectedItem[this.uniqueKey] !== 'undefined' && this.$c_selectedItem[this.contentKey]) || this.placeholder;
     },
   },
   methods: {
