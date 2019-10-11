@@ -157,6 +157,10 @@ export default {
   }
   .b-dropdown > * {
     width: 100% !important;
+    &.dropdown-menu {
+      max-height: 400px;
+      overflow-y: auto;
+    }
   }
   .b-dropdown {
     .dropdown-item a {
